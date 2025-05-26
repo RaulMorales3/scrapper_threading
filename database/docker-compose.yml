@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:17-bullseye
+    container_name: postgres
+    restart: always
+    # set shared memory limit when using docker compose
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: py_threads
+      POSTGRES_USER: py_threads
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
